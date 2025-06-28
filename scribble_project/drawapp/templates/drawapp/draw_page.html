@@ -354,7 +354,7 @@
             function predictLoop() {
                 let elapsed = (Date.now() - startTime) / 1000;
 
-                if (elapsed < 2 && Math.random() < 0.8) {
+                if (elapsed < 0 && Math.random() < 0.8) {
                     if (Math.random() < 0.3) {
                         let randomGuess = randomWords[Math.floor(Math.random() * randomWords.length)];
                         updateChat([[randomGuess, 0.01]]);

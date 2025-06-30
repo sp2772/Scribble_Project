@@ -20,9 +20,8 @@ import time
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
+import shutil
 # Create your views here.
-
-
 
 DEFAULT_MODEL_FILENAME= "step_176000.keras"
 # === Global Constants ===
@@ -102,6 +101,8 @@ def load_all_models():
     global loaded_models
     
     with model_lock:
+        
+
         # Keep default model
         if 'default' not in loaded_models and default_model:
             loaded_models['default'] = {
@@ -300,7 +301,13 @@ def draw_page(request):
     # Pass readable names to the template
     readable_words = [w.replace('_', ' ').title() for w in challenge_words]
     model_files = sorted([f for f in os.listdir(MODELS_DIR) if f.endswith('.keras')])
+
+    # ✅ Add default model to the list if it's missing
+    if DEFAULT_MODEL_FILENAME not in model_files:
+        model_files.insert(0, DEFAULT_MODEL_FILENAME)  # Or append() if you want it last
+
     model_mapping = {i + 1: model_files[i] for i in range(len(model_files))}
+
     return render(request, 'drawapp/draw_page.html', {
         'challenge_words': readable_words,"model_mapping": model_mapping
     })

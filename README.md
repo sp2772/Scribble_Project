@@ -1,6 +1,6 @@
 # Scribble Game: AI-Powered Drawing Guessing Game
 
-This project is a web-based interactive drawing game where users draw a word on a canvas, and an Artificial Intelligence model attempts to guess what is being drawn in real-time. It's built using Django for the backend and HTML/CSS/JavaScript for the frontend, demonstrating a machine learning model integrated into a real-time web application.
+This project is a web-based interactive drawing game where users draw a word on a canvas, and an Artificial Intelligence model attempts to guess what is being drawn in real-time. It's built using Django for the backend and HTML/CSS/JavaScript for the frontend, demonstrating deep learning models integrated into a real-time web application.
 
 ## Features
 

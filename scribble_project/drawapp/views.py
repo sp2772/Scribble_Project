@@ -14,13 +14,15 @@ from io import BytesIO
 import base64
 import cv2
 from tensorflow.keras.models import load_model
-import base64
 import matplotlib.pyplot as plt
 import io
 import time
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
+# Create your views here.
+
+
 
 DEFAULT_MODEL_FILENAME= "step_176000.keras"
 # === Global Constants ===
@@ -250,21 +252,7 @@ def delete_model(request):
         return JsonResponse({'success': False, 'error': str(e)})
     
 
-# Create your views here.
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-import os, random, json
-import numpy as np
-from PIL import Image
-from io import BytesIO
-import base64
-import cv2
-from tensorflow.keras.models import load_model
-import base64
-import matplotlib.pyplot as plt
-import io
-import time
+
 # === Global Constants ===
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "step_176000.keras")
 
@@ -621,8 +609,7 @@ def predict(request):
         
         # --- DEBUG: Show image stats ---
         print("\n\n🖼️ Checking for blank canvas...\n\n")
-        # for i, img in enumerate(processed_images):
-        #     print(f"Image {i}: mean={np.mean(img):.2f}, min={np.min(img):.2f}, max={np.max(img):.2f}")
+        
 
         if all(is_blank(img) for img in processed_images):
             

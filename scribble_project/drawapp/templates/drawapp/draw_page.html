@@ -181,7 +181,28 @@
                 if (!predictions || predictions.length === 0) return;
                 
                 const guess = predictions[0][0]; // [0][0] gets the first prediction's word
-                const confidence = Math.floor(predictions[0][1] * 100); // Use actual confidence
+                //const confidence = Math.floor(predictions[0][1] * 100); // Use actual confidence
+
+                let score = predictions[0][1];  // raw softmax value
+
+                let tier;
+                if (score >= 0.4) tier = 90;
+                else if (score >= 0.25) tier = 80;
+                else if (score >= 0.23) tier = 70;
+                else if (score >= 0.18) tier = 60;
+                else if (score >= 0.16) tier = 50;
+                else if (score >= 0.15) tier = 40;
+                else if (score >= 0.12) tier = 30;
+                else if (score >= 0.1) tier = 29;
+                else if (score >= 0.07) tier = 28;
+                else if (score >= 0.05) tier = 27;
+                else if (score >= 0.03) tier = 26;
+                else if (score >= 0.02) tier = 25;
+                else if (score >= 0.01) tier = 20;
+                else if (score >= 0.005) tier = 10;
+                else if (score >= 0.001) tier = 5;
+                else tier = 1; // Default to 1% confidence for very low scores
+                const confidence = tier; // Use the tier as the confidence percentage
                 // Skip if this guess is already in failedGuesses
                 const normalized = guess.toLowerCase().replace(/[^a-z]/g, '');
 
